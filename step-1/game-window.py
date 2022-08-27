@@ -1,6 +1,6 @@
 # Author:  Martin McBride
 # Created: 2022-08-20
-# Copyright (c) 2020, Martin McBride
+# Copyright (c) 2022, Martin McBride
 # License: MIT
 
 import pygame as pg
