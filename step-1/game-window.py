@@ -4,30 +4,20 @@
 # License: MIT
 
 import pygame as pg
-from sprites import SnakeBody
 
 # Setup game
 
 screen_width = 640
 screen_height = 480
-tile_size = 20
-x_tiles = screen_width//tile_size
-y_tiles = screen_height//tile_size
 
 # Initialise pygame
 pg.init()
 
 # Set display size
-screen = pg.display.set_mode((screen_width, screen_height))
+pg.display.set_mode((screen_width, screen_height))
 
 # Set window title
 pg.display.set_caption('Snake')
-
-# Create snake sprite
-
-sprite = SnakeBody((100, 200))
-snake = pg.sprite.RenderPlain()
-snake.add(sprite)
 
 # Game loop
 
@@ -41,7 +31,3 @@ while running:
         # If a quit event occurs, reset running flag
         if event.type == pg.QUIT:
             running = False
-
-    screen.fill((0, 0, 0))
-    snake.draw(screen)
-    pg.display.flip()
