@@ -10,6 +10,7 @@ from sprites import SnakeBody
 
 screen_width = 640
 screen_height = 480
+tile_width = 20
 
 # Initialise pygame
 pg.init()
@@ -20,11 +21,13 @@ screen = pg.display.set_mode((screen_width, screen_height))
 # Set window title
 pg.display.set_caption('Snake')
 
+clock = pg.time.Clock()
+
 # Create snake sprite
 
-sprite = SnakeBody((100, 200))
-snake = pg.sprite.RenderPlain()
-snake.add(sprite)
+snake_sprite = SnakeBody((100, 200), tile_width)
+snake_group = pg.sprite.RenderPlain()
+snake_group.add(snake_sprite)
 
 # Game loop
 
@@ -39,6 +42,18 @@ while running:
         if event.type == pg.QUIT:
             running = False
 
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_LEFT:
+                snake_sprite.direction = pg.Vector2(-1,  0)
+            if event.key == pg.K_RIGHT:
+                snake_sprite.direction = pg.Vector2(1,  0)
+            if event.key == pg.K_UP:
+                snake_sprite.direction = pg.Vector2(0,  -1)
+            if event.key == pg.K_DOWN:
+                snake_sprite.direction = pg.Vector2(0,  1)
+
+    dt = clock.tick(30)
+    snake_group.update(dt)
     screen.fill((0, 0, 0))
-    snake.draw(screen)
+    snake_group.draw(screen)
     pg.display.flip()
